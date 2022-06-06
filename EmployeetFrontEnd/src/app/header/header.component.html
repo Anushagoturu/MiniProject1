@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd; " id="nav">
+  <a class="navbar-brand " style="color :rgb(153, 0, 0)" routerLink=""> <strong>
+     <div style="text-align: center">
+       <marquee behavior="" direction=""><h1> <i>Employee Management System</i></h1></marquee> 
+       </div></strong></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+    
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/home"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" >Home </a>
+      </li>
+  
+    <li class="nav-item mr-auto">
+      <a *ngIf="!_user.checkUser()" class="nav-link" routerLink="/signin"  routerLinkActive="active">Signin</a>
+    </li>  
+
+    <li class="nav-item mr-auto">
+      <a *ngIf="!_user.checkUser()" class="nav-link" routerLink="/register"  routerLinkActive="active">RegisterUser</a>
+    </li>
+
+    <li class="nav-item mr-auto">
+      <a *ngIf="_user.checkUser()" (click)="logout()" class="nav-link"  routerLinkActive="active">Logout</a>
+    </li>
+  </ul>
+</div>
+
+</nav>

@@ -1,0 +1,85 @@
+<br><br>
+<div *ngIf="showCard" class="card" >
+  <div class="card-header">
+    <h3 class="card-title text-center">Employee Form</h3>
+  </div>
+
+  <div class="card-body">
+    <form class="form"  (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+      <div class="form-group">
+        <label for="name"> Name</label>
+        <input 
+          type="text" 
+          class="form-control"
+          id="name"  
+          name="name" 
+          placeholder="Enter full name" 
+          [(ngModel)]="employee.name" 
+          #name="ngModel" 
+          required />
+        <span class="text-danger" *ngIf="(name.touched || f.submitted)  && name.errors?.required" >
+          Name is required
+        </span>
+      </div>  
+
+      <div class="form-group">
+        <label for="dateOfBirth">Date of Birth</label>
+        <input 
+          type="date" 
+          class="form-control" 
+          id="dateOfBirth" 
+          name="dateOfBirth" 
+          placeholder="Enter date of birth" 
+          [(ngModel)]="employee.dob"  
+          #dateOfBirth="ngModel" 
+          required />
+        <span class="text-danger" *ngIf="(dateOfBirth.touched || f.submitted)  && dateOfBirth.errors?.required" >
+          Date of birth is required
+        </span>
+      </div>
+
+      <div class="form-group">  
+        <label for="email">Email address</label>
+        <input 
+          type="email" 
+          class="form-control" 
+          id="email" 
+          name="email" 
+          placeholder="Enter email" 
+          [(ngModel)]="employee.email" 
+          #email="ngModel" 
+          pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,4}$" 
+          required />
+        <span class="text-danger" *ngIf="(email.touched || f.submitted)  && email.errors?.required" >
+          Email is required
+        </span>
+        <span class="text-danger" *ngIf="email.errors?.pattern">
+          Enter a valid email address
+        </span>
+      </div>  
+
+      <div class="form-group">  
+        <div class="form-check">
+          <label for="skills">Skills</label>
+          <br>
+          <div *ngFor="let skill of checkboxList">
+            <input 
+              class="form-check-input" 
+              type="checkbox"  
+              [checked]="skill.status" 
+              id="skill.id" 
+              name="skill.name" 
+              (change)="skill.status=!skill.status">
+            <label  class="form-check-label"  for id="skill.id">{{skill.name}}</label>
+          </div>
+        </div>
+      </div>
+      
+    </form>
+  </div>
+
+  <div class="card-footer">
+    <button type="submit" class="btn btn-primary" [disabled]="!f.form.valid" (click)="onSubmit()">Submit</button>
+  </div>
+</div>

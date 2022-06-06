@@ -1,0 +1,43 @@
+<br><br>
+<div *ngIf="employees" class="card">
+  <div class="card-header">
+    <h3 class="card-title text-center">{{heading}}</h3>
+  </div>  
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table  table-bordered table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Date of Birth</th>
+            <th>Skills</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody> 
+          <tr *ngFor =" let employee of employees; let i=index">
+            <td>{{employee.name}}</td>
+            <td>{{employee.email}}</td>
+            <td>{{employee.dob}}</td>
+            <td>{{employee.skills}} </td>  
+            <td><button 
+              type="submit" 
+              class="btn btn-danger"  
+              (click)="deleteEmployee(employee.id)" 
+              style="margin:5px">Delete</button> 
+              <button 
+              type="submit" 
+              class="btn btn-primary" 
+              (click)="goToUpdate(employee)" 
+              style="margin:5px">Edit</button> 
+            </td>
+          </tr>  
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
